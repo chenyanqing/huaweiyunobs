@@ -34,13 +34,12 @@ public class HuaweiyunobsPlugin implements FlutterPlugin, MethodCallHandler {
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "huaweiyunobs");
     channel.setMethodCallHandler(new HuaweiyunobsPlugin());
   }
-  private String aa="";
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("_uploadFileToHuaWeiYun")) {
       String message=uploadfile(call);
       if(message=="success"){
-        result.success(aa);
+        result.success(message);
       }else{
         result.error("UNAVAILABLE", "上传文件报错", null);
       }
@@ -69,7 +68,6 @@ public class HuaweiyunobsPlugin implements FlutterPlugin, MethodCallHandler {
         String fileurl=thecall.argument("filepath").toString();
         PutObjectResult bb=obsClient.putObject(thecall.argument("bucketname").toString(), thecall.argument("objectname").toString(),
             new File(fileurl)); // localfile为待上传的本地文件路径，需要指定到具体的文件名
-        aa=bb.getObjectUrl();
       }
     });
     thread.start();
