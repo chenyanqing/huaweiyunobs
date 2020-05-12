@@ -1,0 +1,55 @@
+group 'com.example.huaweiyunobs'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+repositories{
+    maven {
+        url 'http://mirrors.huaweicloud.com/repository/maven/huaweicloudsdk/'
+    }
+    maven {
+        url 'http://mirrors.huaweicloud.com/repository/maven/'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation files('src/main/java/com/example/huaweiyunobs/jackson-annotations-2.9.8.jar')
+    implementation files('src/main/java/com/example/huaweiyunobs/jackson-core-2.9.8.jar')
+    implementation files('src/main/java/com/example/huaweiyunobs/jackson-databind-2.9.8.jar')
+    implementation files('src/main/java/com/example/huaweiyunobs/java-xmlbuilder-1.1.jar')
+    implementation files('src/main/java/com/example/huaweiyunobs/okhttp-3.10.0.jar')
+    implementation files('src/main/java/com/example/huaweiyunobs/okio-1.14.0.jar')
+    implementation files('src/main/java/com/example/huaweiyunobs/esdk-obs-android-3.1.3-javadoc.jar')
+    implementation files('src/main/java/com/example/huaweiyunobs/esdk-obs-android-3.1.3.jar')
+}
